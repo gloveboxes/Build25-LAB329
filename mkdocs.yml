@@ -1,7 +1,7 @@
 site_name: Build your code-first agent with Azure AI Foundry
 docs_dir: lab_manual
 nav:
-  - Model Distillation Lab Manual | Teaching Small Models to Be Smart: Skillable_lab_manualintro.md
+  - Model Distillation Lab Manual | Teaching Small Models to Be Smart: index.md
   - Generate Training Data (15 min): Skillable_lab_manual1.md
   - Fine-tune and Optimize (15 min): Skillable_lab_manual2.md
   - Test Your ONNX Model (10 min): Skillable_lab_manual3.md
