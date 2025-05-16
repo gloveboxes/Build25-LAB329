@@ -6,15 +6,16 @@
 - **Hands-On Activities**: 60 minutes
 - **Discussion Time**: 5 minutes
 
+
 ## Table of Contents
 - Workshop Overview
 - Notebook-by-Notebook Guide
   - Step 1: Generate Training Data
   - Step 2: Fine-tune and Optimize
-  - Step 3: Test Your ONNX Model 
-  - Step 4: Register to Azure ML 
-  - Step 5: Download the Model 
-  - Step 6: Local Inference 
+  - Step 3: Test Your ONNX Model
+  - Step 4: Register to Azure ML
+  - Step 5: Download the Model
+  - Step 6: Local Inference
   - Step 7: Local Inference with Foundry Local
 - What You've Learned
 - Next Steps
@@ -59,15 +60,6 @@ This is a **practical, code-first workshop**. You'll work through six Jupyter no
 
 Each notebook is designed to be completed in 5-15 minutes, with clear instructions at each step.
 
-## Prerequisites Check
-
-Before you start, ensure you have:
-
-- [x] **Azure ML Studio access** with compute resources allocated
-- [x] **Python 3.10+** installed (already in Azure ML Studio)
-- [x] **Basic Python knowledge** (understanding of functions, loops, and imports)
-- [x] **Terminal/command line familiarity** (basic git commands)
-- [x] **Internet connectivity** (to access datasets and models)
 
 > **Important:** This workshop uses Azure ML Studio and requires access to a deployed Azure AI model endpoint. You should have already been provided with the necessary credentials.
 
@@ -99,59 +91,37 @@ Select Terminal
 
 ![SelectTerminal](./images/ML_Terminal.png)
 
-To clone the repository and set up your environment for the lab, follow these steps:
-
-1. **Ensure you navigate to the user folder as we want to clone the workshop to our user home folder**
-      ```bash 
-      ls
-      ```
-
-   ### Move to user folder   
-   ```bash
-   cd users 
-   ```
-   ### Ensure you navigate to your specifc user folder
-   ```bash 
-   cd user*** 
-   ```
-2. **Clone the Repository**: Use the `git clone` command followed by the repository URL:
-   ```bash
-   git clone https://github.com/microsoft/Build25-LAB329 
-   ```
-
-3. **Access the Cloned Repository**: Navigate to the directory of the cloned repository:
-   ```bash
-   cd Build25-LAB329
-   ```
-
-4. **Create Your Environment File**: Copy the `sample.env` in the `notebooks` environment file and rename it to local.env in the root of your solution. The local environment file is used to store your Azure credentials:
-
-   ```bash
-   cp sample.env local.env
-   ```
-
-We provide a `sample.env` file in the `notebooks` folder you will need to create a `local.env` file and save this to your user folder 
-
-![Localenv](./images/localenv.png)
-
-Add your credentials to the file these are provided in the resouce tab:
+2. To clone the repository and set up your environment for the lab, follow these steps in the terminal:
 
 ```
-TEACHER_MODEL_NAME=DeepSeek-V3
-TEACHER_MODEL_ENDPOINT=https://your-endpoint.services.ai.azure.com/models
-TEACHER_MODEL_KEY=your-api-key-here
-AZUREML_SUBSCRIPTION_ID=your-subscription-id
-AZUREML_RESOURCE_GROUP=your-resource-group
-AZUREML_WS_NAME=your-workspace-name
+cd Users &&
+      cd User1-* &&
+      git clone https://github.com/microsoft/Build25-LAB329 &&
+      cd Build25-LAB329
 ```
 
-Save the file in root of your your user folder as in the image above save and close the `local.env`.
+Press the refresh icon on your notebooks panel. You should now see your Build25-Lab329 folder within your users folder.
+
+3. Upload your local.env file. We have a provided 'local.env' file in the lab folder on the desktop of the VM. We need to upload this to the noetbooks environment. Using Azure ML Studio UI https://ml.azure.com to the users folder 
 
 
-5. **Navigate to the Lab Directory**: Go to the Lab329 folder containing the notebooks:
-   ```bash
-   cd Build-Lab329/Lab329/Notebook
-   ```
+- Open Azure ML Studio.
+- Navigate to Notebooks in your workspace.
+- Click on the Upload button.
+- Select the file from your local system and upload the local.env file into the root of the users home folder within user.
+
+![Localenv location in ML Workspace](./images/localenv.png) 
+
+Ensure the TEACHER_MODEL_ENDPOINT is correct including/models
+TEACHER_MODEL_ENDPOINT="https://westus3.api.cognitive.microsoft.com/
+Update to be:
+TEACHER_MODEL_ENDPOINT="https://westus3.api.cognitive.microsoft.com/models 
+
+4. **Navigate to the Lab Directory**: Go to the Lab329 folder containing the notebooks:
+
+```
+Build-Lab329/Lab329/Notebook
+```
 
 ## Notebook-by-Notebook Guide
 
