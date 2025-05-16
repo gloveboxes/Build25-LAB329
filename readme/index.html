@@ -1,0 +1,587 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../media/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Readme - Build your code-first agent with Azure AI Foundry</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#welcome-to-model-distillation-with-microsoft-azure-ai-foundry-workshop-build-2025" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Build your code-first agent with Azure AI Foundry" class="md-header__button md-logo" aria-label="Build your code-first agent with Azure AI Foundry" data-md-component="logo">
+      
+  <img src="../media/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Build your code-first agent with Azure AI Foundry
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Readme
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Build your code-first agent with Azure AI Foundry" class="md-nav__button md-logo" aria-label="Build your code-first agent with Azure AI Foundry" data-md-component="logo">
+      
+  <img src="../media/favicon.png" alt="logo">
+
+    </a>
+    Build your code-first agent with Azure AI Foundry
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Distillation Lab Manual | Teaching Small Models to Be Smart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 1 Generate Training Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 2 Fine-tune and Optimize
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 3 Test Your ONNX Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 4 Register to Azure ML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 5 Download the Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 6 Local Inference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 7 Local Inference with Foundry Local
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manualconclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#welcome-to-model-distillation-with-microsoft-azure-ai-foundry-workshop-build-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      Welcome to Model Distillation with Microsoft Azure AI Foundry Workshop - Build 2025
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workshop-duration-and-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workshop Duration and Timing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-distillation-lab-manual-teaching-small-models-to-be-smart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Distillation Lab Manual: Teaching Small Models to Be Smart
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model Distillation Lab Manual: Teaching Small Models to Be Smart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h2 id="welcome-to-model-distillation-with-microsoft-azure-ai-foundry-workshop-build-2025">Welcome to Model Distillation with Microsoft Azure AI Foundry Workshop - Build 2025<a class="headerlink" href="#welcome-to-model-distillation-with-microsoft-azure-ai-foundry-workshop-build-2025" title="Permanent link">&para;</a></h2>
+<p>This lab manual provides comprehensive guidance for the Model Distillation workshop using Microsoft Azure AI Foundry and advanced optimization tools. The workshop demonstrates a complete end-to-end workflow for distilling knowledge from Large Language Models to smaller, more efficient models.</p>
+<h3 id="workshop-structure">Workshop Structure<a class="headerlink" href="#workshop-structure" title="Permanent link">&para;</a></h3>
+<p>This lab is organized into five key sections following a practical workflow:</p>
+<ol>
+<li><strong>Knowledge Distillation (AzureML &amp; MAI)</strong> - Using a teacher model to generate high-quality training data</li>
+<li><strong>Fine-tuning and Model Conversion (Microsoft Olive)</strong> - Fine-tuning with LoRA and optimizing with int4 quantization</li>
+<li><strong>Model Inference (ONNX Runtime GenAI)</strong> - Running the optimized model efficiently</li>
+<li><strong>Model Registration (AzureML)</strong> - Registering models in Azure ML for reuse</li>
+<li><strong>Local Model Download</strong> - Preparing models for edge deployment</li>
+</ol>
+<h3 id="time-allocation">Time Allocation<a class="headerlink" href="#time-allocation" title="Permanent link">&para;</a></h3>
+<h2 id="workshop-duration-and-timing">Workshop Duration and Timing<a class="headerlink" href="#workshop-duration-and-timing" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Total Workshop Time</strong>: 70 minutes</li>
+<li><strong>Setup Time</strong>: 5 minutes</li>
+<li><strong>Hands-On Activities</strong>: 60 minutes</li>
+<li><strong>Discussion Time</strong>: 5 minutes</li>
+</ul>
+<h3 id="workshop-materials">Workshop Materials<a class="headerlink" href="#workshop-materials" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Interactive Notebooks</strong>: Five Jupyter notebooks with detailed comments guide you through each step</li>
+<li><strong>Overview Documents</strong>: Each notebook has a companion overview document explaining key concepts</li>
+</ul>
+<h3 id="technology-stack">Technology Stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h3>
+<p>This workshop leverages several cutting-edge technologies:</p>
+<ul>
+<li><strong>Azure Machine Learning</strong>: For managing the end-to-end ML lifecycle requring a A100 Compute Instance</li>
+<li><strong>Microsoft Olive</strong>: For model optimization and ONNX conversion</li>
+<li><strong>ONNX Runtime GenAI</strong>: For efficient model inference</li>
+<li><strong>Phi-4-mini</strong>: Microsoft's small but powerful language model</li>
+<li><strong>LoRA</strong>: Low-Rank Adaptation for efficient fine-tuning</li>
+<li><strong>AI Foundry Local</strong>: For local deployment and testing</li>
+</ul>
+<p>Each notebook includes detailed explanations, code samples, and visualization of results to help participants understand both the theoretical concepts and practical implementation of model distillation techniques.</p>
+<h3 id="workshop-goals">Workshop Goals<a class="headerlink" href="#workshop-goals" title="Permanent link">&para;</a></h3>
+<p>By the end of this workshop, participants will be able to:
+1. Implement knowledge distillation using Microsoft Azure AI Foundry
+2. Optimize models using Microsoft Olive with int4 quantization
+3. Run inference efficiently using ONNX Runtime GenAI
+4. Deploy optimized models to both cloud and edge environments
+5. Understand the trade-offs between model size, speed, and accuracy</p>
+<h3 id="setup-instructions">Setup instructions<a class="headerlink" href="#setup-instructions" title="Permanent link">&para;</a></h3>
+<p>Please follow the <a href="../setup_instructions/">setup instructions</a> to configure you Azure AI Foundry Workspace and Azure ML Compute and Notebook environment.</p>
+<h3 id="lab-manual">Lab Manual<a class="headerlink" href="#lab-manual" title="Permanent link">&para;</a></h3>
+<h1 id="model-distillation-lab-manual-teaching-small-models-to-be-smart">Model Distillation Lab Manual: Teaching Small Models to Be Smart<a class="headerlink" href="#model-distillation-lab-manual-teaching-small-models-to-be-smart" title="Permanent link">&para;</a></h1>
+<h2 id="duration">Duration<a class="headerlink" href="#duration" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Total Time: 70 minutes</li>
+<li>Reading Time: 20 minutes</li>
+<li>Hands-On Activities: 50 minutes</li>
+</ul>
+<p><a href="../distillation_lab_manual/">Lab Manual Getting Started</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer", "content.code.copy", "navigation.tabs.sticky", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../js/custom-nav.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

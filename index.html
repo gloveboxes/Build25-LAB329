@@ -1,0 +1,876 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="Skillable_lab_manual1/">
+      
+      
+      <link rel="icon" href="media/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Build your code-first agent with Azure AI Foundry</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="css/custom.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#model-distillation-lab-manual-teaching-small-models-to-be-smart" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Build your code-first agent with Azure AI Foundry" class="md-header__button md-logo" aria-label="Build your code-first agent with Azure AI Foundry" data-md-component="logo">
+      
+  <img src="media/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Build your code-first agent with Azure AI Foundry
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Model Distillation Lab Manual | Teaching Small Models to Be Smart
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Build your code-first agent with Azure AI Foundry" class="md-nav__button md-logo" aria-label="Build your code-first agent with Azure AI Foundry" data-md-component="logo">
+      
+  <img src="media/favicon.png" alt="logo">
+
+    </a>
+    Build your code-first agent with Azure AI Foundry
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Model Distillation Lab Manual | Teaching Small Models to Be Smart
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Distillation Lab Manual | Teaching Small Models to Be Smart
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#workshop-duration-and-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workshop Duration and Timing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workshop-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workshop Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scenario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites Check
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-github-repo-and-resources-to-your-azure-ml-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the GitHub Repo and resources to your Azure ML Studio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebook-by-notebook-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebook-by-Notebook Guide
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skillable_lab_manual1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 1 Generate Training Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skillable_lab_manual2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 2 Fine-tune and Optimize
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skillable_lab_manual3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 3 Test Your ONNX Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skillable_lab_manual4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 4 Register to Azure ML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skillable_lab_manual5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 5 Download the Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skillable_lab_manual6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 6 Local Inference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skillable_lab_manual7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 7 Local Inference with Foundry Local
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Skillable_lab_manualconclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#workshop-duration-and-timing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workshop Duration and Timing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workshop-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workshop Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scenario
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites Check
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clone-the-github-repo-and-resources-to-your-azure-ml-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clone the GitHub Repo and resources to your Azure ML Studio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebook-by-notebook-guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notebook-by-Notebook Guide
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="model-distillation-lab-manual-teaching-small-models-to-be-smart">Model Distillation Lab Manual: Teaching Small Models to Be Smart<a class="headerlink" href="#model-distillation-lab-manual-teaching-small-models-to-be-smart" title="Permanent link">&para;</a></h1>
+<h2 id="workshop-duration-and-timing">Workshop Duration and Timing<a class="headerlink" href="#workshop-duration-and-timing" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Total Workshop Time</strong>: 70 minutes</li>
+<li><strong>Setup Time</strong>: 5 minutes</li>
+<li><strong>Hands-On Activities</strong>: 60 minutes</li>
+<li><strong>Discussion Time</strong>: 5 minutes</li>
+</ul>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Workshop Overview</li>
+<li>Notebook-by-Notebook Guide</li>
+<li>Step 1: Generate Training Data</li>
+<li>Step 2: Fine-tune and Optimize</li>
+<li>Step 3: Test Your ONNX Model </li>
+<li>Step 4: Register to Azure ML </li>
+<li>Step 5: Download the Model </li>
+<li>Step 6: Local Inference </li>
+<li>Step 7: Local Inference with Foundry Local</li>
+<li>What You've Learned</li>
+<li>Next Steps</li>
+</ul>
+<h2 id="workshop-overview">Workshop Overview<a class="headerlink" href="#workshop-overview" title="Permanent link">&para;</a></h2>
+<p>Welcome to the Model Distillation Workshop! In this hands-on session, you'll learn how to transform a large language model (DeepSeek-V3) into a smaller, equally capable model (Phi-4-mini) using knowledge distillation.</p>
+<h2 id="scenario">Scenario<a class="headerlink" href="#scenario" title="Permanent link">&para;</a></h2>
+<p><strong>Scenario: Edge AI for Education — Efficient Question Answering on Resource-Constrained Devices</strong></p>
+<p>Imagine you are an AI engineer at an EdTech company. Your goal is to deliver an intelligent question-answering assistant that can run on affordable, resource-constrained devices in schools, such as laptops or edge servers, without requiring constant cloud connectivity. However, the best-performing language models are large and expensive to run locally.</p>
+<p>In this workshop, you will:
+- Use a large, cloud-hosted language model (the "teacher") to generate high-quality answers for a multiple-choice question dataset (CommonsenseQA).
+- Distill this knowledge into a much smaller, efficient "student" model (Phi-4-mini) using knowledge distillation and fine-tuning techniques.
+- Optimize and quantize the student model (using Microsoft Olive and ONNX) so it can run efficiently on local hardware.
+- Register, download, and deploy the optimized model to an edge device using Azure AI Foundry Local.
+- Validate that your compact model can answer questions with high accuracy and low latency, even on limited hardware.</p>
+<p>This scenario reflects real-world needs for deploying AI in education, healthcare, manufacturing, and other sectors where cost, privacy, and offline capability are critical. By the end of the lab, you will have built an end-to-end workflow for distilling, optimizing, and deploying advanced AI models from the cloud to the edge.</p>
+<h3 id="what-youll-build">What You'll Build<a class="headerlink" href="#what-youll-build" title="Permanent link">&para;</a></h3>
+<p>By the end of this workshop, you'll create a compact language model that:
+- Is <strong>75% smaller</strong> than the original teacher model
+- Runs on <strong>standard hardware</strong> without specialized GPUs
+- Can be deployed on <strong>edge devices</strong> or embedded systems
+- Maintains most of the <strong>capabilities</strong> of the larger model</p>
+<h3 id="workshop-flow">Workshop Flow<a class="headerlink" href="#workshop-flow" title="Permanent link">&para;</a></h3>
+<p>This is a <strong>practical, code-first workshop</strong>. You'll work through six Jupyter notebooks that guide you step-by-step through:</p>
+<ol>
+<li><strong>Data Generation</strong>: Create training examples using a large "teacher" model</li>
+<li><strong>Fine-Tuning</strong>: Train a smaller "student" model on this data</li>
+<li><strong>Optimization</strong>: Convert and compress the model for efficiency</li>
+<li><strong>Testing</strong>: Verify the model works correctly</li>
+<li><strong>Registration</strong>: Register your model with Azure ML</li>
+<li><strong>Deployment</strong>: Download and run the model locally</li>
+</ol>
+<p>Each notebook is designed to be completed in 5-15 minutes, with clear instructions at each step.</p>
+<h2 id="prerequisites-check">Prerequisites Check<a class="headerlink" href="#prerequisites-check" title="Permanent link">&para;</a></h2>
+<p>Before you start, ensure you have:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Azure ML Studio access</strong> with compute resources allocated</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Python 3.10+</strong> installed (already in Azure ML Studio)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Basic Python knowledge</strong> (understanding of functions, loops, and imports)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Terminal/command line familiarity</strong> (basic git commands)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <strong>Internet connectivity</strong> (to access datasets and models)</li>
+</ul>
+<blockquote>
+<p><strong>Important:</strong> This workshop uses Azure ML Studio and requires access to a deployed Azure AI model endpoint. You should have already been provided with the necessary credentials.</p>
+</blockquote>
+<h2 id="environment-setup">Environment Setup<a class="headerlink" href="#environment-setup" title="Permanent link">&para;</a></h2>
+<p>Let's start by setting up your environment and cloning the code repository to your Azure Machine Learning Workspace.</p>
+<h3 id="1-access-azure-ml-studio">1. Access Azure ML Studio<a class="headerlink" href="#1-access-azure-ml-studio" title="Permanent link">&para;</a></h3>
+<p>Open Azure ML Studio by:
+1. Go to Azure ML Studio +++https://ml.azure.com+++
+2. Sign in with your Azure credentials
+3. Select your workspace (provided by your instructor)
+4. Navigate to the "Notebooks" section</p>
+<p>Let's start with the first notebook!</p>
+<h2 id="clone-the-github-repo-and-resources-to-your-azure-ml-studio">Clone the GitHub Repo and resources to your Azure ML Studio<a class="headerlink" href="#clone-the-github-repo-and-resources-to-your-azure-ml-studio" title="Permanent link">&para;</a></h2>
+<p>Open your Azure ML Studio +++https://ml.azure.com+++</p>
+<p><a class="glightbox" href="images/ML_Studio.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="MLStudio" src="images/ML_Studio.png" /></a></p>
+<p>Select Notebooks</p>
+<p><a class="glightbox" href="images/Notebook_Terminal.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="MLStudioNotebooks" src="images/Notebook_Terminal.png" /></a></p>
+<p>Select Terminal</p>
+<p><a class="glightbox" href="images/ML_Terminal.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="SelectTerminal" src="images/ML_Terminal.png" /></a></p>
+<p>To clone the repository and set up your environment for the lab, follow these steps:</p>
+<ol>
+<li><strong>Ensure you navigate to the user folder as we want to clone the workshop to our user home folder</strong>
+      <div class="highlight"><pre><span></span><code>ls
+</code></pre></div></li>
+</ol>
+<p>### Move to user folder <br />
+   <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>users<span class="w"> </span>
+</code></pre></div>
+   ### Ensure you navigate to your specifc user folder
+   <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>user***<span class="w"> </span>
+</code></pre></div>
+2. <strong>Clone the Repository</strong>: Use the <code>git clone</code> command followed by the repository URL:
+   <div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/microsoft/Build25-LAB329<span class="w"> </span>
+</code></pre></div></p>
+<ol>
+<li>
+<p><strong>Access the Cloned Repository</strong>: Navigate to the directory of the cloned repository:
+   <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>Build25-LAB329
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Create Your Environment File</strong>: Copy the <code>sample.env</code> in the <code>notebooks</code> environment file and rename it to local.env in the root of your solution. The local environment file is used to store your Azure credentials:</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>sample.env<span class="w"> </span>local.env
+</code></pre></div>
+<p>We provide a <code>sample.env</code> file in the <code>notebooks</code> folder you will need to create a <code>local.env</code> file and save this to your user folder </p>
+<p><a class="glightbox" href="images/localenv.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Localenv" src="images/localenv.png" /></a></p>
+<p>Add your credentials to the file these are provided in the resouce tab:</p>
+<div class="highlight"><pre><span></span><code>TEACHER_MODEL_NAME=DeepSeek-V3
+TEACHER_MODEL_ENDPOINT=https://your-endpoint.services.ai.azure.com/models
+TEACHER_MODEL_KEY=your-api-key-here
+AZUREML_SUBSCRIPTION_ID=your-subscription-id
+AZUREML_RESOURCE_GROUP=your-resource-group
+AZUREML_WS_NAME=your-workspace-name
+</code></pre></div>
+<p>Save the file in root of your your user folder as in the image above save and close the <code>local.env</code>.</p>
+<ol>
+<li><strong>Navigate to the Lab Directory</strong>: Go to the Lab329 folder containing the notebooks:
+   <div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>Build-Lab329/Lab329/Notebook
+</code></pre></div></li>
+</ol>
+<h2 id="notebook-by-notebook-guide">Notebook-by-Notebook Guide<a class="headerlink" href="#notebook-by-notebook-guide" title="Permanent link">&para;</a></h2>
+<p>This workshop uses 7 Jupyter notebooks that you'll run in sequence. Each notebook builds on the previous one, so it's important to complete them in order. We will be your Azure ML workspace Notebook environment for notebooks 1 - 4 you will then be using the Skillable VM for notebooks 5 - 7.</p>
+<p>Let's look at each notebook and what you'll do:</p>
+<table>
+<thead>
+<tr>
+<th>Notebook</th>
+<th>Purpose</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01_AzureML_Distillation</td>
+<td>Generate training data using DeepSeek-V3</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>02_AzureML_FineTuningAndConvertByMSOlive</td>
+<td>Fine-tune Phi-4-mini with LoRA and optimize</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>03_AzureML_RuningByORTGenAI</td>
+<td>Test model inference with ONNX Runtime</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>04_AzureML_RegisterToAzureML</td>
+<td>Register model to Azure ML</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>05_Local_Download</td>
+<td>Download model for local deployment</td>
+<td>5 min</td>
+</tr>
+<tr>
+<td>06_Local_Inference</td>
+<td>Run inference locally</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td>07_Local_Inference</td>
+<td>Run inference locally with Foundry Local</td>
+<td>10 min</td>
+</tr>
+</tbody>
+</table>
+<p>Now you’re ready to work with the repository on your Azure ML Studio +++https://ml.azure.com+++</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="Skillable_lab_manual1/" class="md-footer__link md-footer__link--next" aria-label="Next: Step 1 Generate Training Data">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Step 1 Generate Training Data
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.footer", "content.code.copy", "navigation.tabs.sticky", "content.tabs.link"], "search": "assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="js/custom-nav.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

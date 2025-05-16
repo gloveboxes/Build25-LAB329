@@ -1,0 +1,1079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../media/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Azure AI Foundry Setup for Lab329: H100 Compute & Deepseek Model - Build your code-first agent with Azure AI Foundry</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#azure-ai-foundry-setup-for-lab329-h100-compute-deepseek-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Build your code-first agent with Azure AI Foundry" class="md-header__button md-logo" aria-label="Build your code-first agent with Azure AI Foundry" data-md-component="logo">
+      
+  <img src="../media/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Build your code-first agent with Azure AI Foundry
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Azure AI Foundry Setup for Lab329: H100 Compute &amp; Deepseek Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="pink"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2c-1.82 0-3.53.5-5 1.35C8 5.08 10 8.3 10 12s-2 6.92-5 8.65C6.47 21.5 8.18 22 10 22a10 10 0 0 0 10-10A10 10 0 0 0 10 2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="amber" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Build your code-first agent with Azure AI Foundry" class="md-nav__button md-logo" aria-label="Build your code-first agent with Azure AI Foundry" data-md-component="logo">
+      
+  <img src="../media/favicon.png" alt="logo">
+
+    </a>
+    Build your code-first agent with Azure AI Foundry
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Model Distillation Lab Manual | Teaching Small Models to Be Smart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 1 Generate Training Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 2 Fine-tune and Optimize
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 3 Test Your ONNX Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 4 Register to Azure ML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 5 Download the Model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 6 Local Inference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manual7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Step 7 Local Inference with Foundry Local
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Skillable_lab_manualconclusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conclusion
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automated-deployment-using-azdbicep" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automated deployment using AZD/Bicep
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="azure-ai-foundry-setup-for-lab329-h100-compute-deepseek-model">Azure AI Foundry Setup for Lab329: H100 Compute &amp; Deepseek Model<a class="headerlink" href="#azure-ai-foundry-setup-for-lab329-h100-compute-deepseek-model" title="Permanent link">&para;</a></h1>
+<p>This guide provides step-by-step instructions for:
+1. Setting up an NVIDIA A100 or H100 GPU compute node through Azure AI Foundry
+2. Deploying the model using Models as a Service (MaaS) in supported regions</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ul>
+<li>An active Azure subscription</li>
+<li>Owner or Contributor access to your Azure subscription</li>
+<li>An existing Azure AI Foundry project or permission to create one</li>
+</ul>
+<h2 id="automated-deployment-using-azdbicep">Automated deployment using AZD/Bicep<a class="headerlink" href="#automated-deployment-using-azdbicep" title="Permanent link">&para;</a></h2>
+<p>We have provided an automated setup process using azd/bicep the setup configuration is located the <code>infra</code> folder 
+you can update the machine sizes and specification by editing the following in the <code>main.bicep</code> file.</p>
+<div class="highlight"><pre><span></span><code>@description(&#39;VM size for the compute instance&#39;)
+# Simply uncomment appropiate machine size
+# param computeVmSize string = &#39;Standard_ND96amsr_A100_v4&#39; // High-performance GPU for model training using A100 (fastest)
+# param computeVmSize string = &#39;STANDARD_NC40ADS_H100_V5&#39; // High-performance GPU for model training using H100 (Default used by the Bicep Deployment)
+</code></pre></div>
+<h1 id="manual-setup-process">Manual Setup Process<a class="headerlink" href="#manual-setup-process" title="Permanent link">&para;</a></h1>
+<h2 id="project-setup-and-supported-regions">Project Setup and Supported Regions<a class="headerlink" href="#project-setup-and-supported-regions" title="Permanent link">&para;</a></h2>
+<h3 id="supported-regions-for-lab329">Supported Regions for Lab329<a class="headerlink" href="#supported-regions-for-lab329" title="Permanent link">&para;</a></h3>
+<p>This lab requires specific Azure regions that support both A100 GPUs and MAI-DS-R1 model deployments:</p>
+<ul>
+<li>West US (westus)</li>
+<li>South Central US (southcentralus)</li>
+<li>East US (eastus)</li>
+<li>West US 3 (westus3)</li>
+<li>North Central US (northcentralus)</li>
+<li>East US 2 (eastus2)</li>
+</ul>
+<h3 id="step-1-access-azure-ai-foundry">Step 1: Access Azure AI Foundry<a class="headerlink" href="#step-1-access-azure-ai-foundry" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Sign in to the <a href="https://portal.azure.com/">Azure Portal</a></li>
+<li>Search for "AI Foundry" in the search bar</li>
+<li>Select <strong>Azure AI Foundry</strong> from the results</li>
+<li>If you don't see Azure AI Foundry, you may need to create an Azure AI Studio resource first</li>
+</ol>
+<h3 id="step-2-create-or-select-an-azure-ai-foundry-project">Step 2: Create or Select an Azure AI Foundry Project<a class="headerlink" href="#step-2-create-or-select-an-azure-ai-foundry-project" title="Permanent link">&para;</a></h3>
+<ol>
+<li>From the Azure AI Foundry dashboard, click <strong>+ New project</strong></li>
+<li>Fill in the required information:</li>
+<li><strong>Project name</strong>: Enter a descriptive name for your project (e.g., "Lab329-AI-Project")</li>
+<li><strong>Subscription</strong>: Select your Azure subscription</li>
+<li><strong>Resource group</strong>: Create new or select an existing resource group</li>
+<li><strong>Region</strong>: Select one of the supported regions listed above (important!)</li>
+<li><strong>Storage account</strong>: Create new or use an existing account</li>
+<li><strong>Key Vault</strong>: Create new or use an existing Key Vault</li>
+<li><strong>Application Insights</strong>: Create new or use an existing resource</li>
+<li>Click <strong>Create</strong> to create your project</li>
+<li>Wait for the project creation to complete</li>
+</ol>
+<h2 id="step-3-configure-compute-resources">Step 3: Configure Compute Resources<a class="headerlink" href="#step-3-configure-compute-resources" title="Permanent link">&para;</a></h2>
+<ol>
+<li>In your Azure AI Foundry project, navigate to the <strong>Compute</strong> section in the left sidebar</li>
+<li>Click <strong>+ New</strong> to create a new compute resource</li>
+<li>Select <strong>Compute Cluster</strong> as the compute type</li>
+<li>Configure the following settings:</li>
+<li><strong>Compute name</strong>: Provide a unique name (e.g., "a100-compute")</li>
+<li><strong>Location</strong>: Should match your workspace region</li>
+<li><strong>Virtual machine tier</strong>: Select <strong>GPU</strong></li>
+<li><strong>Virtual machine type</strong>: Choose <strong>NCA100 v4-series</strong> (This is the A100 series) or <strong>NC40ADS_H100_V5</strong> (This the H100 Series)</li>
+<li><strong>Virtual machine size</strong>: <ul>
+<li>For single A100 GPU: Select <strong>Standard_NC24ads_A100_v4</strong> (1 A100 GPU) or <strong>Standard_NC40ADS_H100_V5</strong>(1 H100 GPU)</li>
+<li>For multiple A100 GPUs machines/cluster: Select <strong>Standard_NC48ads_A100_v4</strong> (2 A100 GPUs) or higher</li>
+</ul>
+</li>
+<li><strong>Compute mode</strong>: Select <strong>Dedicated</strong> for production workloads</li>
+<li><strong>Minimum number of nodes</strong>: Set to 0 to avoid idle costs</li>
+<li><strong>Maximum number of nodes</strong>: Set according to your needs and quota limits</li>
+<li><strong>Idle time before scale down</strong>: Set a reasonable timeout (e.g., 30 minutes)</li>
+<li>
+<p><strong>Advanced settings</strong>:</p>
+<ul>
+<li>Enable SSH access (optional but recommended for troubleshooting)</li>
+<li>Configure network settings if needed</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>Create</strong> to provision your A100 compute resource</p>
+</li>
+<li>Wait for the compute to be created and reach "Running" state</li>
+</ol>
+<h2 id="step-4-verify-a100h100-compute-availability">Step 4: Verify A100/H100 Compute Availability<a class="headerlink" href="#step-4-verify-a100h100-compute-availability" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Once the compute resource is created, it will appear in your compute list</li>
+<li>The status should change to <strong>Creating</strong> and then to <strong>Running</strong></li>
+<li>You can verify the A100 GPU specification by clicking on the compute resource name</li>
+</ol>
+<h2 id="step-5-use-your-a100h100-compute-with-azure-ml-studio">Step 5: Use Your A100/H100 Compute with Azure ML Studio<a class="headerlink" href="#step-5-use-your-a100h100-compute-with-azure-ml-studio" title="Permanent link">&para;</a></h2>
+<h3 id="option-1-through-notebooks">Option 1: Through Notebooks<a class="headerlink" href="#option-1-through-notebooks" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Navigate to the <strong>Notebooks</strong> section in your Azure AI Foundry project</li>
+<li>Create a new notebook or open an existing one</li>
+<li>In the notebook, click on the compute selector in the top right</li>
+<li>Select your A100/H100 compute from the dropdown menu</li>
+<li>Run a simple test to verify GPU availability:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CUDA available: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of GPUs: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;GPU Device Name: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Should show &quot;NVIDIA A100 80GB PCIe&quot; or similar</span>
+</code></pre></div>
+<h2 id="important-considerations-for-a100-gpu-usage">Important Considerations for A100 GPU Usage<a class="headerlink" href="#important-considerations-for-a100-gpu-usage" title="Permanent link">&para;</a></h2>
+<h3 id="cost-management">Cost Management<a class="headerlink" href="#cost-management" title="Permanent link">&para;</a></h3>
+<p>A100 GPUs are premium resources with significant hourly costs:</p>
+<ol>
+<li><strong>Set minimum nodes to 0</strong>: This ensures the compute scales down when not in use</li>
+<li><strong>Monitor usage</strong>: Regularly check your compute usage in the Azure Portal</li>
+<li><strong>Set budget alerts</strong>: Configure Azure budget alerts to avoid unexpected charges</li>
+<li><strong>Shut down when not needed</strong>: If you won't use the compute for days, consider deleting it</li>
+</ol>
+<h3 id="performance-optimization">Performance Optimization<a class="headerlink" href="#performance-optimization" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Batch size</strong>: A100 GPUs have large memory (40GB or 80GB), optimize batch sizes accordingly</li>
+<li><strong>Mixed precision training</strong>: Use half-precision (FP16) or bfloat16 for better performance</li>
+<li><strong>Distributed training</strong>: For large models, configure distributed training across multiple A100s</li>
+</ol>
+<h3 id="quota-limitations">Quota Limitations<a class="headerlink" href="#quota-limitations" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Check your quota</strong>: Verify your subscription has sufficient quota for A100/H100 GPUs</li>
+<li><strong>Request increases</strong>: If needed, request quota increases through the Azure Portal</li>
+<li><strong>Regional availability</strong>: A100 GPUs may not be available in all regions</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="common-issues-and-solutions">Common Issues and Solutions<a class="headerlink" href="#common-issues-and-solutions" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>"No quota available"</strong>:</li>
+<li>Request a quota increase through Azure Portal</li>
+<li>
+<p>Try a different region where A100s are available</p>
+</li>
+<li>
+<p><strong>Compute creation fails</strong>:</p>
+</li>
+<li>Verify your subscription has GPU quota</li>
+<li>Check that you've selected a region where A100s are available</li>
+<li>
+<p>Ensure you have proper permissions on the resource group</p>
+</li>
+<li>
+<p><strong>Long provisioning times</strong>:</p>
+</li>
+<li>A100 GPUs are high-demand resources; provisioning may take 10-15 minutes</li>
+<li>
+<p>Be patient during the initial setup</p>
+</li>
+<li>
+<p><strong>CUDA not available in notebooks</strong>:</p>
+</li>
+<li>Verify you selected the correct compute in the notebook</li>
+<li>Check if the necessary CUDA libraries are installed in your environment</li>
+<li>Try using a curated environment with GPU support</li>
+</ol>
+<h2 id="azure-developer-cli-azd-infrastructure-deployment">Azure Developer CLI (azd) Infrastructure Deployment<a class="headerlink" href="#azure-developer-cli-azd-infrastructure-deployment" title="Permanent link">&para;</a></h2>
+<p>This lab includes Azure Bicep templates and Azure Developer CLI (azd) configuration files to automate the deployment of all required infrastructure components. This approach provides a consistent, repeatable deployment experience.</p>
+<h3 id="prerequisites-for-infrastructure-deployment">Prerequisites for Infrastructure Deployment<a class="headerlink" href="#prerequisites-for-infrastructure-deployment" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Azure CLI</strong> - Install the latest version
+   <div class="highlight"><pre><span></span><code><span class="n">winget</span> <span class="n">install</span> <span class="n">-e</span> <span class="p">-</span><span class="n">-id</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">AzureCLI</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Azure Developer CLI (azd)</strong> - Install the latest version
+   <div class="highlight"><pre><span></span><code><span class="n">winget</span> <span class="n">install</span> <span class="n">-e</span> <span class="p">-</span><span class="n">-id</span> <span class="n">Microsoft</span><span class="p">.</span><span class="n">Azd</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Azure Subscription</strong> - An active Azure subscription with permissions to create resources</p>
+</li>
+<li>
+<p><strong>Logged in to Azure</strong> - Ensure you're logged in
+   <div class="highlight"><pre><span></span><code><span class="n">az</span> <span class="n">login</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="step-by-step-deployment-using-azure-developer-cli">Step-by-Step Deployment Using Azure Developer CLI<a class="headerlink" href="#step-by-step-deployment-using-azure-developer-cli" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Clone the Repository</strong> (if not already done)
+   <div class="highlight"><pre><span></span><code><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">microsoft</span><span class="p">/</span><span class="n">Build25-LAB329</span><span class="p">.</span><span class="n">git</span>
+<span class="nb">cd </span><span class="n">Build25-LAB329</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Initialize the Azure Developer CLI Environment</strong>
+   <div class="highlight"><pre><span></span><code><span class="n">azd</span> <span class="n">init</span>
+</code></pre></div>
+   This will prompt you for an environment name, which will be used as a prefix for all Azure resources created.</p>
+</li>
+<li>
+<p><strong>Deploy the Infrastructure</strong>
+   <div class="highlight"><pre><span></span><code><span class="n">azd</span> <span class="n">up</span>
+</code></pre></div>
+   During deployment, you'll be prompted to provide:   - Azure subscription to use</p>
+</li>
+<li>Azure region for deployment (choose from supported regions)</li>
+<li>DeepSeek-V3 model location (must support Azure AI services)</li>
+<li>
+<p>Compute VM size (defaults to Standard_ND96amsr_A100_v4 for GPU acceleration)</p>
+</li>
+<li>
+<p><strong>Generate Environment Variables for Notebooks</strong>
+   <div class="highlight"><pre><span></span><code><span class="n">azd</span> <span class="n">env</span> <span class="nb">get-values</span> <span class="p">&gt;</span> <span class="n">Lab329</span><span class="p">\</span><span class="n">Notebook</span><span class="p">\</span><span class="n">local</span><span class="p">.</span><span class="n">env</span>
+</code></pre></div>
+   This command captures all output variables from the deployment and stores them in a file that the notebooks can use.</p>
+</li>
+</ol>
+<h3 id="what-gets-deployed">What Gets Deployed<a class="headerlink" href="#what-gets-deployed" title="Permanent link">&para;</a></h3>
+<p>The azd deployment creates the following Azure resources:</p>
+<ol>
+<li>
+<p><strong>Resource Group</strong> - Named <code>rg-&lt;environmentName&gt;</code></p>
+</li>
+<li>
+<p><strong>Azure Key Vault</strong> - For secure storage of credentials and secrets</p>
+</li>
+<li>
+<p><strong>Azure Storage Account</strong> - Used by Azure ML for datasets, models, and outputs</p>
+</li>
+<li>
+<p><strong>Azure AI Services</strong> - DeepSeek-V3 model deployment (teacher model)</p>
+</li>
+<li>
+<p><strong>Azure ML Hub Workspace</strong> - For centralized machine learning operations</p>
+</li>
+<li>
+<p><strong>Azure ML Project Workspace</strong> - For running the knowledge distillation pipeline</p>
+</li>
+<li>
+<p><strong>Compute Instance</strong> - H100 compute For executing the notebooks and training processes</p>
+</li>
+</ol>
+<h3 id="verification-and-troubleshooting">Verification and Troubleshooting<a class="headerlink" href="#verification-and-troubleshooting" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Verify Resource Deployment</strong>:
+   <div class="highlight"><pre><span></span><code><span class="n">azd</span> <span class="n">env</span> <span class="nb">get-resources</span>
+</code></pre></div>
+   This shows all resources that have been deployed in your environment.</p>
+</li>
+<li>
+<p><strong>Check Deployment Logs</strong>:
+   <div class="highlight"><pre><span></span><code><span class="n">azd</span> <span class="n">env</span> <span class="nb">get-logs</span>
+</code></pre></div>
+   If deployment fails, this command helps identify the cause.</p>
+</li>
+<li>
+<p><strong>Common Deployment Issues</strong>:</p>
+</li>
+<li><strong>Quota limits</strong>: Ensure your subscription has quota for the requested resources</li>
+<li><strong>Region availability</strong>: Verify the selected region supports all required services</li>
+<li><strong>Permission issues</strong>: Ensure your account has Contributor access to the subscription</li>
+<li><strong>Name conflicts</strong>: If resource names conflict, try a different environment name</li>
+</ol>
+<h3 id="accessing-deployed-resources">Accessing Deployed Resources<a class="headerlink" href="#accessing-deployed-resources" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Azure Portal</strong>:</li>
+<li>Navigate to the <a href="https://portal.azure.com/">Azure Portal</a></li>
+<li>Search for and select the resource group named <code>rg-&lt;environmentName&gt;</code></li>
+<li>
+<p>Explore the deployed resources within this group</p>
+</li>
+<li>
+<p><strong>Azure ML Studio</strong>:</p>
+</li>
+<li>In the Azure Portal, find your Azure ML workspace</li>
+<li>Click "Launch Studio" to open Azure ML Studio</li>
+<li>Access notebooks, compute, and other ML resources</li>
+</ol>
+<h3 id="clean-up">Clean Up<a class="headerlink" href="#clean-up" title="Permanent link">&para;</a></h3>
+<p>When you've completed the lab and want to remove all deployed resources:</p>
+<div class="highlight"><pre><span></span><code><span class="n">azd</span> <span class="n">down</span>
+</code></pre></div>
+<p>To remove an <strong>Azure Developer CLI (azd) environment</strong> from <strong>Azure CLI</strong> or <strong>Azure Cloud Shell</strong>, follow these steps:</p>
+<h3 id="manually-delete-the-environment-folder">Manually Delete the Environment Folder<a class="headerlink" href="#manually-delete-the-environment-folder" title="Permanent link">&para;</a></h3>
+<p>Since <code>azd env delete</code> may not work properly in Cloud Shell, you can manually remove the environment folder:
+<div class="highlight"><pre><span></span><code>rm<span class="w"> </span>-rf<span class="w"> </span>~/.azd/env/&lt;EnvironmentName&gt;
+</code></pre></div>
+Replace <code>&lt;EnvironmentName&gt;</code> with the actual name of your environment.</p>
+<h3 id="check-for-remaining-environment-variables">Check for Remaining Environment Variables<a class="headerlink" href="#check-for-remaining-environment-variables" title="Permanent link">&para;</a></h3>
+<p>Run the following command to list environment variables:
+<div class="highlight"><pre><span></span><code>azd<span class="w"> </span>env<span class="w"> </span>get-values
+</code></pre></div>
+If needed, unset specific variables:
+<div class="highlight"><pre><span></span><code>azd<span class="w"> </span>env<span class="w"> </span><span class="nb">set</span><span class="w"> </span>&lt;VariableName&gt;<span class="w"> </span><span class="s2">&quot;&quot;</span>
+</code></pre></div></p>
+<h3 id="verify-cleanup">Verify Cleanup<a class="headerlink" href="#verify-cleanup" title="Permanent link">&para;</a></h3>
+<p>Ensure the environment is removed by running:
+<div class="highlight"><pre><span></span><code>azd<span class="w"> </span>env<span class="w"> </span>list
+</code></pre></div>
+If the deleted environment still appears, restart Cloud Shell and check again.</p>
+<p>For more details, you can refer to <a href="https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/manage-environment-variables">Microsoft's documentation</a> </p>
+<p>This command will delete all Azure resources created during deployment, preventing further charges.</p>
+<h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/azure/machine-learning/">Azure AI Foundry Documentation</a></li>
+<li><a href="https://www.nvidia.com/data-center/h100/">NVIDIA H100 GPU Documentation</a></li>
+<li><a href="https://learn.microsoft.com/azure/virtual-machines/ncads-h100-v5">Azure NC H100 v5 Series</a></li>
+<li><a href="https://www.nvidia.com/data-center/a100/">NVIDIA A100 GPU Documentation</a></li>
+<li><a href="https://learn.microsoft.com/azure/virtual-machines/nc-a100-v4-series">Azure NC A100 v4-series</a></li>
+<li><a href="https://learn.microsoft.com/azure/machine-learning/how-to-train-distributed-gpu">Distributed Training Best Practices</a></li>
+</ul>
+<h2 id="deploying-models-using-azure-ai-foundry-models-as-a-service-maas">Deploying Models Using Azure AI Foundry Models as a Service (MaaS)<a class="headerlink" href="#deploying-models-using-azure-ai-foundry-models-as-a-service-maas" title="Permanent link">&para;</a></h2>
+<p>Azure AI Foundry provides a serverless deployment option called Models as a Service (MaaS) that allows you to quickly deploy models without provisioning infrastructure. This section guides you through deploying models using MaaS in supported regions: westus, southcentralus, eastus, westus3, northcentralus, and eastus2.</p>
+<h3 id="prerequisites-for-maas-deployment">Prerequisites for MaaS Deployment<a class="headerlink" href="#prerequisites-for-maas-deployment" title="Permanent link">&para;</a></h3>
+<ul>
+<li>An active Azure subscription</li>
+<li>Access to Azure AI Foundry</li>
+<li>Your model registered in Azure ML registry or a model ID from the Azure AI model catalog</li>
+</ul>
+<h3 id="step-1-access-the-model-deployment-page">Step 1: Access the Model Deployment Page<a class="headerlink" href="#step-1-access-the-model-deployment-page" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Sign in to <a href="https://ai.azure.com/">Azure AI Studio</a></li>
+<li>Navigate to your Azure AI Foundry project</li>
+<li>Select <strong>Models</strong> from the left navigation menu</li>
+<li>Find your model in the list or search for it</li>
+<li>For Azure AI catalog models Deepseek-v3, you can use the model ID: <code>azureml://registries/azureml/models/deepseek-v3/versions/1</code></li>
+</ol>
+<h3 id="step-2-deploy-the-model-as-a-service">Step 2: Deploy the Model as a Service<a class="headerlink" href="#step-2-deploy-the-model-as-a-service" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Select your model from the list</li>
+<li>Click on the <strong>Deploy</strong> button</li>
+<li>Select <strong>Real-time endpoint</strong> as the deployment type</li>
+<li>In the configuration page, select <strong>Serverless</strong> as the compute type</li>
+<li>This is the Models as a Service option</li>
+<li>Configure your deployment:</li>
+<li><strong>Name</strong>: Provide a unique name for your endpoint</li>
+<li><strong>Region</strong>: Select one of the supported regions: westus, southcentralus, eastus, westus3, northcentralus, or eastus2</li>
+<li><strong>Authentication type</strong>: Choose "Key-based authentication" or "Azure AD authentication" based on your security requirements</li>
+<li><strong>Scaling settings</strong>: Configure the scaling options based on your expected traffic</li>
+<li>
+<p><strong>Advanced settings</strong>: Configure any advanced options as needed</p>
+</li>
+<li>
+<p>Click <strong>Create</strong> to deploy the model</p>
+</li>
+</ol>
+<h3 id="step-3-test-the-deployed-endpoint">Step 3: Test the Deployed Endpoint<a class="headerlink" href="#step-3-test-the-deployed-endpoint" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Once deployment is complete, navigate to the <strong>Endpoints</strong> section in your Azure AI Foundry project</li>
+<li>Select your newly created endpoint</li>
+<li>Go to the <strong>Test</strong> tab</li>
+<li>Enter a sample input or use the provided examples</li>
+<li>Click <strong>Test</strong> to verify that your endpoint is working properly</li>
+</ol>
+<h3 id="step-4-get-deployment-details-for-integration">Step 4: Get Deployment Details for Integration<a class="headerlink" href="#step-4-get-deployment-details-for-integration" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Go to the <strong>Consume</strong> tab of your endpoint</li>
+<li>Here you'll find:</li>
+<li><strong>REST endpoint URL</strong>: The URL to send API requests to</li>
+<li><strong>API keys</strong>: Authentication keys for your endpoint</li>
+<li><strong>Sample code</strong>: Code snippets for Python, C#, and other languages to integrate with your endpoint</li>
+</ol>
+<h3 id="step-5-monitor-your-maas-deployment">Step 5: Monitor Your MaaS Deployment<a class="headerlink" href="#step-5-monitor-your-maas-deployment" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Go to the <strong>Metrics</strong> tab of your endpoint</li>
+<li>Here you can monitor:</li>
+<li><strong>Request count</strong>: Number of requests over time</li>
+<li><strong>Latency</strong>: Response time for requests</li>
+<li><strong>Token usage</strong>: Number of tokens consumed</li>
+<li><strong>Error rate</strong>: Percentage of failed requests</li>
+</ol>
+<h3 id="cost-considerations-for-maas">Cost Considerations for MaaS<a class="headerlink" href="#cost-considerations-for-maas" title="Permanent link">&para;</a></h3>
+<p>Unlike traditional compute resources that charge by uptime, MaaS follows a pay-as-you-go model:</p>
+<ol>
+<li><strong>Token-based pricing</strong>: You pay only for the tokens consumed (input + output)</li>
+<li><strong>No idle costs</strong>: No charges when your endpoint isn't processing requests</li>
+<li><strong>Regional pricing</strong>: Costs may vary by region, check the <a href="https://azure.microsoft.com/en-us/pricing/details/machine-learning/">Azure pricing page</a> for details</li>
+</ol>
+<h3 id="supported-model-types-for-maas">Supported Model Types for MaaS<a class="headerlink" href="#supported-model-types-for-maas" title="Permanent link">&para;</a></h3>
+<p>Not all models can be deployed using MaaS. Currently, supported models include:</p>
+<ol>
+<li>Foundation models from the Azure AI model catalog</li>
+<li>Custom models that meet specific requirements:</li>
+<li>Compatible ML frameworks (PyTorch, ONNX, etc.)</li>
+<li>Within size limitations (check documentation for current limits)</li>
+<li>Properly packaged with scoring script and environment definition</li>
+</ol>
+<h3 id="troubleshooting-maas-deployments">Troubleshooting MaaS Deployments<a class="headerlink" href="#troubleshooting-maas-deployments" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Deployment fails</strong>:</li>
+<li>Verify you've selected a supported region</li>
+<li>Check if the model is compatible with MaaS</li>
+<li>
+<p>Review any error messages in the deployment logs</p>
+</li>
+<li>
+<p><strong>High latency</strong>:</p>
+</li>
+<li>MaaS endpoints may have higher cold-start times than dedicated compute</li>
+<li>
+<p>Consider using dedicated compute for latency-sensitive applications</p>
+</li>
+<li>
+<p><strong>Authentication issues</strong>:</p>
+</li>
+<li>Verify you're using the correct authentication method (key vs. Azure AD)</li>
+<li>Check that your API keys haven't expired</li>
+<li>Ensure proper CORS settings if calling from web applications</li>
+</ol>
+<h3 id="connecting-deepseek-v3-model-via-maas">Connecting Deepseek-v3 Model via MaaS<a class="headerlink" href="#connecting-deepseek-v3-model-via-maas" title="Permanent link">&para;</a></h3>
+<p>For the specific Deepseek model mentioned in the lab materials:</p>
+<ol>
+<li>Use the model ID: <code>azureml://registries/azureml/models/deepseek-v3/versions/1</code></li>
+<li>Deploy to one of the supported regions: westus, southcentralus, eastus, westus3, northcentralus, or eastus2</li>
+<li>Use the following Python code to connect to your deployed endpoint:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="c1"># Replace with your endpoint details</span>
+<span class="n">endpoint_url</span> <span class="o">=</span> <span class="s2">&quot;YOUR_ENDPOINT_URL&quot;</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;YOUR_API_KEY&quot;</span>
+
+<span class="c1"># Prepare headers</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&quot;</span> <span class="c1"># Use this for Azure AD auth</span>
+    <span class="c1"># &quot;api-key&quot;: api_key # Use this for key-based auth</span>
+<span class="p">}</span>
+
+<span class="c1"># Prepare data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are an AI assistant that helps with reasoning tasks.&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Solve this step by step: If a^2 + b^2 = 25 and ab = 12, find a + b.&quot;</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>
+    <span class="s2">&quot;top_p&quot;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>
+    <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="mi">800</span>
+<span class="p">}</span>
+
+<span class="c1"># Make the request</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">endpoint_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+<span class="c1"># Process the response</span>
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="n">response_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response_data</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">])</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="setting-up-iam-permissions-for-azure-ml-compute">Setting Up IAM Permissions for Azure ML Compute<a class="headerlink" href="#setting-up-iam-permissions-for-azure-ml-compute" title="Permanent link">&para;</a></h2>
+<p>Proper permissions are essential for users to work with Azure ML compute resources. This section guides you through setting up Identity and Access Management (IAM) permissions for your Azure ML resources.</p>
+<h3 id="step-1-configure-resource-group-level-permissions">Step 1: Configure Resource Group-Level Permissions<a class="headerlink" href="#step-1-configure-resource-group-level-permissions" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Sign in to the <a href="https://portal.azure.com/">Azure Portal</a></li>
+<li>Navigate to the Resource Group containing your Azure AI Foundry project</li>
+<li>Select <strong>Access control (IAM)</strong> from the left sidebar</li>
+<li>Click on <strong>+ Add</strong> and then <strong>Add role assignment</strong></li>
+<li>Configure the following settings:</li>
+<li><strong>Role</strong>: Select one of the following based on user needs:<ul>
+<li><strong>Contributor</strong>: Grants full access to manage all resources (recommended for lab admins)</li>
+<li><strong>AzureML Data Scientist</strong>: Can perform most Azure ML operations, but can't create compute resources</li>
+<li><strong>AzureML Compute Operator</strong>: Can only use existing compute resources</li>
+</ul>
+</li>
+<li><strong>Assign access to</strong>: Select "User, group, or service principal"</li>
+<li><strong>Select</strong>: Search for and select the user account(s) that need access</li>
+<li>Click <strong>Review + assign</strong> to save the role assignment</li>
+</ol>
+<h3 id="step-2-configure-azure-ml-workspace-level-permissions">Step 2: Configure Azure ML Workspace-Level Permissions<a class="headerlink" href="#step-2-configure-azure-ml-workspace-level-permissions" title="Permanent link">&para;</a></h3>
+<p>For more granular control, you can assign roles at the workspace level:</p>
+<ol>
+<li>Navigate to your Azure ML workspace resource in the Azure Portal</li>
+<li>Select <strong>Access control (IAM)</strong> from the left sidebar</li>
+<li>Click on <strong>+ Add</strong> and then <strong>Add role assignment</strong></li>
+<li>Assign one of the following roles based on user needs:</li>
+<li><strong>Owner</strong>: Full control of the workspace, including user management</li>
+<li><strong>Contributor</strong>: Can create and manage all resources in the workspace</li>
+<li><strong>AzureML Data Scientist</strong>: Can submit runs and create experiments, but can't create compute</li>
+<li><strong>AzureML Compute Operator</strong>: Can only use existing compute resources</li>
+<li>Select the user(s) and click <strong>Review + assign</strong></li>
+</ol>
+<h3 id="step-3-configure-compute-specific-permissions">Step 3: Configure Compute-Specific Permissions<a class="headerlink" href="#step-3-configure-compute-specific-permissions" title="Permanent link">&para;</a></h3>
+<p>To provide access to specific compute resources only:</p>
+<ol>
+<li>Navigate to your Azure AI Foundry project</li>
+<li>Select <strong>Compute</strong> from the left sidebar</li>
+<li>Click on the specific compute cluster you want to share</li>
+<li>Select the <strong>Access control (IAM)</strong> tab</li>
+<li>Click <strong>+ Add</strong> and then <strong>Add role assignment</strong></li>
+<li>Assign the <strong>AzureML Compute Operator</strong> role to specific users</li>
+<li>Click <strong>Review + assign</strong></li>
+</ol>
+<h3 id="step-4-verify-permissions">Step 4: Verify Permissions<a class="headerlink" href="#step-4-verify-permissions" title="Permanent link">&para;</a></h3>
+<p>To verify that permissions have been correctly assigned:</p>
+<ol>
+<li>Ask users to sign into the <a href="https://ai.azure.com/">Azure AI Studio</a></li>
+<li>Navigate to the project and try to access compute resources</li>
+<li>Verify they can perform actions appropriate to their assigned role:</li>
+<li>Viewing compute resources</li>
+<li>Submitting jobs to compute clusters</li>
+<li>Creating notebooks and connecting to compute instances</li>
+</ol>
+<h3 id="common-permission-issues-and-troubleshooting">Common Permission Issues and Troubleshooting<a class="headerlink" href="#common-permission-issues-and-troubleshooting" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>"No permission to create compute" error</strong>:</li>
+<li>Ensure the user has at least Contributor role on the resource group</li>
+<li>
+<p>Check if there are Azure Policy restrictions in place</p>
+</li>
+<li>
+<p><strong>"Cannot access storage account" error</strong>:</p>
+</li>
+<li>
+<p>Ensure the user has the Storage Blob Data Contributor role on the associated storage account</p>
+</li>
+<li>
+<p><strong>"Failed to start notebook" error</strong>:</p>
+</li>
+<li>Check if the user has permissions to the underlying compute resource</li>
+<li>
+<p>Verify the user has AzureML Data Scientist role at minimum</p>
+</li>
+<li>
+<p><strong>Permission changes not taking effect immediately</strong>:</p>
+</li>
+<li>Role assignments can take a few minutes to propagate</li>
+<li>Ask users to sign out and sign back in to refresh their token</li>
+</ol>
+<h3 id="best-practices-for-iam-in-azure-ml">Best Practices for IAM in Azure ML<a class="headerlink" href="#best-practices-for-iam-in-azure-ml" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Use Azure AD groups</strong>: Assign permissions to Azure AD groups rather than individual users for easier management</li>
+<li><strong>Follow least privilege principle</strong>: Assign the minimum permissions required for users to perform their tasks</li>
+<li><strong>Regular access review</strong>: Periodically review and update access permissions to maintain security</li>
+<li><strong>Use custom roles</strong>: For advanced scenarios, create custom IAM roles with precisely defined permissions</li>
+</ol>
+<h3 id="required-permissions-for-common-tasks">Required Permissions for Common Tasks<a class="headerlink" href="#required-permissions-for-common-tasks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Required Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create compute resources</td>
+<td>Contributor or Owner at resource group level</td>
+</tr>
+<tr>
+<td>Use existing compute</td>
+<td>AzureML Compute Operator</td>
+</tr>
+<tr>
+<td>Submit training jobs</td>
+<td>AzureML Data Scientist</td>
+</tr>
+<tr>
+<td>Deploy models</td>
+<td>AzureML Data Scientist + additional deployment permissions</td>
+</tr>
+<tr>
+<td>View experiment results</td>
+<td>Reader</td>
+</tr>
+<tr>
+<td>Manage security settings</td>
+<td>Owner</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.footer", "content.code.copy", "navigation.tabs.sticky", "content.tabs.link"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../js/custom-nav.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
